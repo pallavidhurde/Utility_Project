@@ -20,7 +20,7 @@
 
 <script>
   document.getElementById("searchForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // stop default /search?query= behavior
+    e.preventDefault(); 
     let query = document.getElementById("searchBox").value.trim().toLowerCase();
 
     if (query.includes("plumber")) {
@@ -76,7 +76,6 @@
   </div>
 </div>
 
-<!-- How It Works -->
 <section class="text-center my-5">
   <h2>How It Works</h2>
   <div class="row">

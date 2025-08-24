@@ -17,8 +17,7 @@ const ExpressError = require("./utils/ExpressError.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const Review=require("./models/review.js");
 const { selectFields } = require("express-validator/lib/field-selection.js");
-// const Listing = require("./models/listing"); // Ensure this points to your plumber model
-// const Review = require("./models/review"); 
+ 
 
 
  
@@ -64,7 +63,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    res.locals.currUser = req.user; // Make currUser available in all templates
+    res.locals.currUser = req.user; 
     next();
 });
 
@@ -95,7 +94,6 @@ app.post("/signup",wrapAsync(async(req,res)=>{
            if(err){
                return next();
            }
-        //    req.flash("success","welcome to wnaderlust");
        res.redirect("/home");
        })
 }))
@@ -130,18 +128,15 @@ app.get("/search", (req, res) => {
     query.includes("elctrical")   || 
     query.includes("electricians")
   ) {
-    return res.redirect("/elctricals");  // ✅ Correct spelling of your route
+    return res.redirect("/elctricals");  
   } 
   else if (query.includes("carpenter") || query.includes("carpenters")) {
     return res.redirect("/carpenters");
   } 
   else {
-    // fallback
     return res.redirect("/home");
   }
 });
-
-
 
 // index book
 app.get("/booking",async(req,res)=>{
@@ -166,7 +161,6 @@ app.get("/booking/:id" ,async(req,res)=>{
 app.post("/booking" ,isLoggedIn,async(req,res)=>{
    const newbook = new Booking(req.body.book);
    await newbook.save();
-   // console.log(book);
    res.redirect("/booking")
 })
 
@@ -176,11 +170,6 @@ app.delete("/booking/:id",isLoggedIn,async(req,res)=>{
     let canclebook =   await Booking.findByIdAndDelete(id);
     res.redirect("/booking");
 })   
-
-
-
-
-
 
 // Review Carpenter
 
@@ -211,7 +200,7 @@ app.get("/carpenters/:id/review", async (req, res) => {
 // Route to add a review to a carpenter
 app.post("/carpenters/:id/review", isLoggedIn,async (req, res) => {
     try {
-        console.log("User:", req.user); // ✅ Check if req.user exists
+        console.log("User:", req.user); 
 
         let listing = await carpenter.findById(req.params.id);
         if (!listing) {
@@ -224,7 +213,7 @@ app.post("/carpenters/:id/review", isLoggedIn,async (req, res) => {
 
         let newReview = new Review({
             ...req.body.review,
-            author: req.user._id,  // ✅ Check if req.user._id exists
+            author: req.user._id,  
         });
 
         listing.reviews.push(newReview);
@@ -246,7 +235,7 @@ app.delete("/carpenters/:id/reviews/:reviewId",isLoggedIn, async (req, res) => {
         await carpenter.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
         await Review.findByIdAndDelete(reviewId);
 
-        res.redirect(`/carpenters/${id}/review`);  // Redirect back to the reviews page
+        res.redirect(`/carpenters/${id}/review`); 
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
@@ -263,7 +252,7 @@ app.get("/plumbers/:id/plumreview",isLoggedIn, async (req, res) => {
                 path: "reviews",
                 populate: {
                     path: "author",
-                    select: "username" // ✅ Ensures author details are populated
+                    select: "username" 
                 }
             });
 
@@ -271,7 +260,7 @@ app.get("/plumbers/:id/plumreview",isLoggedIn, async (req, res) => {
             return res.status(404).send("Plumber not found");
         }
 
-        res.render("listings/plumreview", { listing }); // ✅ No need to separately pass `reviews`
+        res.render("listings/plumreview", { listing }); 
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
@@ -282,7 +271,7 @@ app.get("/plumbers/:id/plumreview",isLoggedIn, async (req, res) => {
 // Route to add a review to a plumber
 app.post("/plumbers/:id/plumreview",isLoggedIn, async (req, res) => {
     try {
-        if (!req.user) {  // ✅ Check if user is logged in
+        if (!req.user) { 
             return res.status(401).send("You must be logged in to submit a review.");
         }
 
@@ -293,14 +282,14 @@ app.post("/plumbers/:id/plumreview",isLoggedIn, async (req, res) => {
 
         let newReview = new Review({
             ...req.body.review,
-            author: req.user._id,  // ✅ Assign logged-in user as the author
+            author: req.user._id,  
         });
 
         listing.reviews.push(newReview);
         await newReview.save();
         await listing.save();
 
-        res.redirect(`/plumbers/${listing._id}/plumreview`); // ✅ Correct redirect path
+        res.redirect(`/plumbers/${listing._id}/plumreview`); 
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
@@ -314,17 +303,15 @@ app.delete("/plumbers/:id/plumreview/:reviewId", isLoggedIn,async (req, res) => 
             return res.status(404).send("Plumber not found");
         }
 
-        // Remove the review from the listing
         listing.reviews = listing.reviews.filter(
             (review) => review.toString() !== req.params.reviewId
         );
 
-        await listing.save(); // Save updated listing
+        await listing.save(); 
 
-        // Delete the review from the database
         await Review.findByIdAndDelete(req.params.reviewId);
 
-        res.redirect("back"); // ✅ Stay on the same page
+        res.redirect("back"); 
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
@@ -356,7 +343,7 @@ app.get("/elctricals/:id/elcreview", async (req, res) => {
 // Route to add a review to a carpenter
 app.post("/elctricals/:id/elcreview",isLoggedIn, async (req, res) => {
     try {
-        console.log("User:", req.user); // ✅ Check if req.user exists
+        console.log("User:", req.user); 
 
         let listing = await elctrical.findById(req.params.id);
         if (!listing) {
@@ -369,7 +356,7 @@ app.post("/elctricals/:id/elcreview",isLoggedIn, async (req, res) => {
 
         let newReview = new Review({
             ...req.body.review,
-            author: req.user._id,  // ✅ Check if req.user._id exists
+            author: req.user._id,  
         });
 
         listing.reviews.push(newReview);
@@ -391,14 +378,12 @@ app.delete("/elctricals/:id/elcreview/:reviewId",isLoggedIn, async (req, res) =>
         await elctrical.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
         await Review.findByIdAndDelete(reviewId);
 
-        res.redirect(`/elctricals/${id}/elcreview`);  // Redirect back to the reviews page
+        res.redirect(`/elctricals/${id}/elcreview`);  
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
     }
 });
-
-
 
 // index rout
 app.get("/carpenters" , wrapAsync(async(req ,res)=>{
@@ -427,7 +412,6 @@ app.get("/elctricals/new", (req,res)=>{
 app.get("/plumbers/new", (req,res)=>{
     res.render("carpenter/newplum.ejs")
 })
-
 
 //show rout
 app.get("/carpenters/:id" ,wrapAsync( async(req,res)=>{
@@ -468,7 +452,6 @@ app.post("/elctricals",isLoggedIn,wrapAsync(async(req,res) => {
      res.redirect("/plumbers");
  }));
 
-
  //edit rout 
 app.get("/carpenters/:id/edit",isLoggedIn,wrapAsync(async(req,res) =>{
     let{id} = req.params;
@@ -487,9 +470,6 @@ app.get("/plumbers/:id/edit",isLoggedIn,wrapAsync(async(req,res) =>{
     const oneplumber = await plumber.findById(id);
     res.render("carpenter/plumedit.ejs", {oneplumber});
 }));
-
-
-
 
 //update route
 app.put("/carpenters/:id" ,isLoggedIn, wrapAsync(async(req,res)=>{
@@ -512,13 +492,6 @@ app.put("/plumbers/:id" , isLoggedIn,wrapAsync(async(req,res)=>{
     res.redirect(`/plumbers/${id}`);
     
 }));
-
-
-
-
-
-
-
 
 //delete route
 app.delete("/carpenters/:id",isLoggedIn, wrapAsync(async(req,res)=>{
@@ -549,8 +522,6 @@ app.use((err,req,res, next)=>{
     let {statusCode=500, message="Something went wrong"} = err;
     res.status(statusCode).render("error.ejs",{message})
 })
-
-
 app.listen(8080, ()=>{
     console.log('server listining...')
 })
