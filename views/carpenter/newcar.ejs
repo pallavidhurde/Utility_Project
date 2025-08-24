@@ -1,0 +1,114 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<style>
+     body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;  /* reset any margin */
+        padding: 0; /* reset padding */
+    }
+
+    h3 {
+        color: #343a40;
+        text-align: center;
+        margin-top: 20px; /* add space below navbar */
+    }
+
+    form {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 20px auto;  /* center form */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    textarea {
+        height: 100px;
+        resize: none;
+    }
+
+    .valid-feedback {
+        color: green;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .invalid-feedback {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+</style>
+
+<h3>Create your new service Profile</h3>
+
+<form method="POST" action="/carpenters" class="needs-validation" novalidate>
+    
+    <div class="form-group">
+        <input type="text" name="car[name]" placeholder="Enter name" class="form-control" required>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Please enter your name.</div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="car[service]" placeholder="Your service" class="form-control" required>
+        <div class="valid-feedback">Great service!</div>
+        <div class="invalid-feedback">Please specify your service.</div>
+    </div>
+
+    <div class="form-group">
+        <textarea name="car[description]" placeholder="Enter description" class="form-control" required></textarea>
+        <div class="valid-feedback">Description added.</div>
+        <div class="invalid-feedback">Please enter a description.</div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="car[phone]" placeholder="Phone" class="form-control" pattern="[0-9]{10}" required>
+        <div class="valid-feedback">Valid phone number.</div>
+        <div class="invalid-feedback">Enter a valid 10-digit phone number.</div>
+    </div>
+
+    <div class="form-group">
+        <input type="number" name="car[price]" placeholder="Price" class="form-control" required>
+        <div class="valid-feedback">Price set!</div>
+        <div class="invalid-feedback">Please enter a valid price.</div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="car[location]" placeholder="Enter place" class="form-control" required>
+        <div class="valid-feedback">Location added.</div>
+        <div class="invalid-feedback">Please enter a location.</div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add</button>
+    
+</form>

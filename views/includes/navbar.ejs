@@ -1,0 +1,30 @@
+
+<nav class="navbar navbar-expand-md bg-body-light sticky-top border-bottom">
+  <div class="container-fluid">
+    <div  class="navbar-nav">
+      <a class="nav-link" href="/home"><h4>Smart Utility</h4></a>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> 
+    <div class="collapse navbar-collapse" id="multiCollapseExample2">
+      <div class="navbar-nav ms-auto "> 
+        <a class="nav-link" href="services">Add Your Services</a>
+        <a class="nav-link" href="/booking">Cart</a>
+
+        <% if(!currUser) { %>   
+          <a class="nav-link" href="/login"><b>Login</b></a>       
+          <a class="nav-link active" aria-current="page" href="/signup"><b>Sign up</b></a>
+        <% } %> 
+        <% if(currUser) { %>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+

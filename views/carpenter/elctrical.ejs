@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="container mt-4">
+    <h1 class="text-center mb-4">All Electricians</h1>
+
+    <!-- Grid Layout for Cards -->
+    <div class="row">
+      <% for (let electrician of allelctrical) { %> 
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><%= electrician.name %></h5>
+              <p class="card-text"><%= electrician.description %></p>
+              <p class="card-text"><b>Phone:</b> <%= electrician.phone %></p>
+              <p class="card-text"><b>Location:</b> <%= electrician.location %></p>
+              <a href="/elctricals/<%= electrician._id %>" class="btn btn-primary">View Profile</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Add Electrician Button -->
+    <div class="text-center mt-4">
+      <a href="/elctricals/new" class="btn btn-success">Add Electrician Profile</a>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,138 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Book your service here</h2>
+   <form  method="POST" action="/booking">
+        <input name="book[name]" placeholder="enter your name"type="text"> <br>
+        <input name="book[service]" placeholder="enter your service"type="text"><br>
+        <input name="book[address]" placeholder="enter your address"type="text"><br>
+        <textarea name="book[problem]" placeholder="enter your problem"type="text"></textarea><br>
+        <input name="book[time]" placeholder="enter your time"type="text"> <br>
+        <button>Book Now</button>
+
+    </form>
+</body>
+</html> -->
+
+<% layout("/layouts/boilerplate") %>
+
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .booking-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0056b3, #003d82);
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #007bff;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group .form-control {
+            padding-left: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="booking-container">
+            <h2><i class="fas fa-tools"></i> Book Your Service</h2>
+            <form method="POST" action="/booking">
+                <!-- Name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+                    <div class="input-group">
+                        <span class="icon"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" name="book[name]" placeholder="Enter your name" required>
+                    </div>
+                </div>
+
+                <!-- Service -->
+                <div class="mb-3">
+                    <label for="service" class="form-label">Service Type</label>
+                    <div class="input-group">
+                        <span class="icon"><i class="fas fa-briefcase"></i></span>
+                        <input type="text" class="form-control" name="book[service]" placeholder="Enter service type" required>
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <div class="mb-3">
+                    <label for="address" class="form-label">Your Address</label>
+                    <div class="input-group">
+                        <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <input type="text" class="form-control" name="book[address]" placeholder="Enter your address" required>
+                    </div>
+                </div>
+
+                <!-- Problem Description -->
+                <div class="mb-3">
+                    <label for="problem" class="form-label">Problem Description</label>
+                    <textarea class="form-control" name="book[problem]" placeholder="Describe your issue" rows="3" required></textarea>
+                </div>
+
+                <!-- Time -->
+                <div class="mb-3">
+                    <label for="time" class="form-label">Preferred Time</label>
+                    <div class="input-group">
+                        <span class="icon"><i class="fas fa-clock"></i></span>
+                        <input type="time" class="form-control" name="book[time]" required>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Book Now</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

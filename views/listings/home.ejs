@@ -1,0 +1,100 @@
+<% layout("/layouts/boilerplate") %>
+
+<header class="text-center my-4">
+  <h1 class="display-4">Find Trusted Home Services</h1>
+  <p class="lead">Book top-rated professionals for your home repairs and tasks.</p>
+</header>
+
+<form id="searchForm" class="input-group mb-4">
+  <input 
+    type="text" 
+    class="form-control" 
+    id="searchBox" 
+    placeholder="Search for Plumber, Electrician, Carpenter..."
+    required
+  >
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="submit">🔍 Search</button>
+  </div>
+</form>
+
+<script>
+  document.getElementById("searchForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // stop default /search?query= behavior
+    let query = document.getElementById("searchBox").value.trim().toLowerCase();
+
+    if (query.includes("plumber")) {
+      window.location.href = "/plumbers";
+    } else if (
+      query.includes("electrician") ||
+      query.includes("electrical")  ||
+      query.includes("elctrical")
+    ) {
+      window.location.href = "/elctricals";
+    } else if (query.includes("carpenter")) {
+      window.location.href = "/carpenters";
+    } else {
+      window.location.href = "/home"; // fallback
+    }
+  });
+</script>
+
+
+
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="card h-100">
+      <img src="/css/images/electrecian.jpg" class="card-img-top" alt="Electrician">
+      <div class="card-body">
+        <h5 class="card-title">💡 Electrician</h5>
+        <p class="card-text">Expert electrical repairs and installations.</p>
+        <a href="/elctricals" class="btn btn-primary">Find Electricians</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card h-100">
+      <img src="/css/images/carpenter.jpg" class="card-img-top" alt="Carpenter">
+      <div class="card-body">
+        <h5 class="card-title">🪚 Carpenter</h5>
+        <p class="card-text">High-quality carpentry and woodwork services.</p>
+        <a href="/carpenters" class="btn btn-primary">Find Carpenters</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card h-100">
+      <img src="/css/images/plumber.jpeg" class="card-img-top" alt="Plumber">
+      <div class="card-body">
+        <h5 class="card-title">🔧 Plumber</h5>
+        <p class="card-text">Reliable plumbing solutions for your home.</p>
+        <a href="/plumbers" class="btn btn-primary">Find Plumbers</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- How It Works -->
+<section class="text-center my-5">
+  <h2>How It Works</h2>
+  <div class="row">
+    <div class="col-md-3"><p>1️⃣ Search for a service provider</p></div>
+    <div class="col-md-3"><p>2️⃣ View details and ratings</p></div>
+    <div class="col-md-3"><p>3️⃣ Book a time slot</p></div>
+    <div class="col-md-3"><p>4️⃣ Get service at your doorstep</p></div>
+  </div>
+</section>
+
+<section class="popular-services">
+  <h2>Popular Services</h2>
+  <ul id="service-list"></ul>
+</section>
+
+<footer class="text-center my-4">
+  <p>Contact: info@smartutility.com | Privacy Policy</p>
+</footer>
+
+<script src="/js/script.js"></script>
+

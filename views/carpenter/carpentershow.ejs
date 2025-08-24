@@ -1,0 +1,51 @@
+<% layout("/layouts/boilerplate") %>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background: url('/images/profile-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <div class="card-body">
+                    <h3 class="card-title text-center"><%= onecarpenter.name %></h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Service:</b> <%= onecarpenter.service %></li>
+                        <li class="list-group-item"><b>Description:</b> <%= onecarpenter.description %></li>
+                        <li class="list-group-item"><b> Phone:</b> <%= onecarpenter.phone %></li>
+                        <li class="list-group-item"><b> Location:</b> <%= onecarpenter.location %></li>
+                        <li class="list-group-item"><b> Price:</b> &#8377;<%= onecarpenter.price.toLocaleString("en-IN") %></li>
+                    </ul>
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/carpenters/<%= onecarpenter._id %>/edit" class="btn btn-warning btn-sm"><b> Edit</b></a>
+                        <form method="GET" action="/booking/new">
+                            <button class="btn btn-warning btn-sm"><b> New book</b></button>
+                        </form>
+                        <form method="POST" action="/carpenters/<%= onecarpenter._id %>?_method=DELETE">
+                            <button class="btn btn-danger btn-sm"><b> Delete</b></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <form method="POST" action="/carpenters/<%= onecarpenter._id %>/review">
+            <button class="btn btn-success">review</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+</body>

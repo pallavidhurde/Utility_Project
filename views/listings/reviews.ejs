@@ -1,0 +1,80 @@
+<% layout("/layouts/boilerplate") %>
+<div class="col-8 offset-2 mb-3 new">
+    <h4>Leave a Review</h4>
+    <form method="POST" action="/carpenters/<%= listing._id %>/review" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            <div class="star-rating">
+                <span class="fa fa-star" data-value="1"></span>
+                <span class="fa fa-star" data-value="2"></span>
+                <span class="fa fa-star" data-value="3"></span>
+                <span class="fa fa-star" data-value="4"></span>
+                <span class="fa fa-star" data-value="5"></span>
+                <input type="hidden" name="review[rating]" id="ratingValue" value="0">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="comment" class="form-label">Comments</label>
+            <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+            <div class="invalid-feedback">Please enter some comment</div>
+        </div>
+        <div class="btni mb-3">
+            <button class="btn btn-outline-dark">Submit</button>
+        </div>
+    </form>
+
+    <hr>
+    <p><b>All Reviews</b></p>
+    <div class="row">
+        <% for(let review of listing.reviews) { %>
+        <div class="card col-5 ms-3 mb-3">
+            <div class="card-body">
+                <h5 class="card-title mt-3">@<%= review.author.username %></h5>
+                <p class="card-text">
+                    <% for(let i = 0; i < review.rating; i++) { %>
+                        <span class="fa fa-star checked"></span>
+                    <% } %>
+                    <% for(let i = review.rating; i < 5; i++) { %>
+                        <span class="fa fa-star"></span>
+                    <% } %>
+                </p>
+                <p class="card-text"><%= review.comment %></p>
+            </div>
+            <form class="mb-3" method="POST" action="/carpenters/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-sm btn-dark">Delete</button>
+            </form>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<script>
+    const stars = document.querySelectorAll('.star-rating .fa-star');
+    const ratingInput = document.getElementById('ratingValue');
+
+    stars.forEach(star => {
+        star.addEventListener('click', function () {
+            let rating = this.getAttribute('data-value');
+            ratingInput.value = rating;
+
+            stars.forEach(s => s.classList.remove('checked'));
+
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add('checked');
+            }
+        });
+    });
+</script>
+
+<style>
+    .fa-star {
+        font-size: 24px;
+        cursor: pointer;
+        color: #ccc;
+    }
+
+    .fa-star.checked {
+        color: gold;
+    }
+</style>

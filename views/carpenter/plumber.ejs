@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<body>
+   <div class="container mt-4">
+       <h1 class="text-center mb-4">All Plumbers</h1>
+
+       <!-- Grid Layout for Cards -->
+       <div class="row">
+           <% for(let plumber of allplumber) { %>
+             <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= plumber.name %></h5>
+                    <p class="card-text"><%= plumber.description %></p>
+                    <p class="card-text"><b>Phone:</b> <%= plumber.phone %></p>
+                    <p class="card-text"><b>Location:</b> <%= plumber.location %></p>
+                    <a href="/plumbers/<%= plumber._id %>" class="btn btn-primary">View Profile</a>
+                  </div>
+                </div>
+             </div>
+           <% } %>
+       </div>
+
+       <!-- Add Plumber Button -->
+       <div class="text-center mt-4">
+           <a href="/plumbers/new" class="btn btn-success">Add Plumber Profile</a>
+       </div>
+   </div>
+</body>

@@ -1,0 +1,52 @@
+<% layout("/layouts/boilerplate") %>
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background: url('/images/profile-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <!-- <img src="/images/electrician-profile.jpg" class="card-img-top" alt="Electrician"> -->
+                <div class="card-body">
+                    <h3 class="card-title text-center"><%= oneelctrical.name %></h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Service:</b> <%= oneelctrical.service %></li>
+                        <li class="list-group-item"><b>Description:</b> <%= oneelctrical.description %></li>
+                        <li class="list-group-item"><b> Phone:</b> <%= oneelctrical.phone %></li>
+                        <li class="list-group-item"><b> Location:</b> <%= oneelctrical.location %></li>
+                        <li class="list-group-item"><b> Price:</b> &#8377;<%= oneelctrical.price.toLocaleString("en-IN") %></li>
+                    </ul>
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/elctricals/<%= oneelctrical._id %>/edit" class="btn btn-warning btn-sm"><b> Edit</b></a>
+                        <form method="GET" action="/booking/new">
+                            <button class="btn btn-warning btn-sm"><b> New book</b></button>
+                        </form>
+                        <form method="POST" action="/elctricals/<%= oneelctrical._id %>?_method=DELETE">
+                            <button class="btn btn-danger btn-sm"><b> Delete</b></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <form method="POST" action="/elctricals/<%= oneelctrical._id %>/elcreview">
+            <button class="btn btn-success">review</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>

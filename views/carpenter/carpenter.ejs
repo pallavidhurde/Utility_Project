@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+   <div class="container mt-4">
+       <h1 class="text-center mb-4">All Carpenters</h1>
+
+       <!-- Grid Layout for Cards -->
+       <div class="row">
+           <% for(let carpenter of allcarpenter) { %>
+             <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= carpenter.name %></h5>
+                    <p class="card-text"><%= carpenter.description %></p>
+                    <p class="card-text"><b>Phone:</b> <%= carpenter.phone %></p>
+                    <p class="card-text"><b>Location:</b> <%= carpenter.location %></p>
+                    <a href="/carpenters/<%= carpenter._id %>" class="btn btn-primary">View Profile</a>
+                  </div>
+                </div>
+             </div>
+           <% } %>
+       </div>
+
+       <!-- Add Carpenter Button -->
+       <div class="text-center mt-4">
+           <a href="/carpenters/new" class="btn btn-success">Add Carpenter Profile</a>
+       </div>
+   </div>
+</body>
