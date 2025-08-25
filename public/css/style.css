@@ -4,7 +4,6 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
-    /* padding-top: 70px; */
 }
 
 .container {
@@ -12,16 +11,6 @@ body {
     padding: 20px;
     max-width: 1100px;
 }
-
-/* Navigation Bar */
-/* nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f0ecec;
-    padding: 15px 30px;
-    color: white;
-} */
 
 nav{
     background-color:white ;
@@ -40,28 +29,6 @@ nav{
     font-weight: bold;
 }
 
-/* .navbar-collapse {
-    justify-content: flex-end; 
-}
-
-
-@media (max-width: 768px) {
-    .navbar-nav {
-        text-align: center;
-    }
-
-    .navbar-nav .nav-link {
-        padding: 10px 0; 
-    }
-}
-
-.navbar {
-    position: relative;
-    z-index: 1000;
-} */
-
-
-/* Hero Section */
 h1 {
     color: #222;
     font-size: 28px;
@@ -74,7 +41,6 @@ p {
     margin-bottom: 20px;
 }
 
-/* Search Bar */
 .search-container {
     display: flex;
     justify-content: center;
@@ -103,8 +69,6 @@ p {
 .search-container button:hover {
     background-color: #218838;
 }
-
-/* Services Grid */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -135,7 +99,6 @@ p {
     background-color: #e9ecef;
 }
 
-/* How It Works Section */
 .how-it-works {
     background: #fff;
     padding: 20px;
@@ -148,24 +111,6 @@ p {
 .how-it-works h2 {
     color: #333;
 }
-
-/* Popular Services */
-.popular-services {
-    background: #f1f1f1;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 30px auto;
-    max-width: 800px;
-}
-
-/* Footer */
-/* footer {
-    background: #333;
-    color: white;
-    padding: 15px;
-    margin-top: 20px;
-    opacity: 1;
-} */
 
 
 .f-info{
@@ -209,13 +154,13 @@ p {
     cursor: pointer;
 }
 .card {
-    height: 100%; /* ensure equal height for all cards */
+    height: 100%; 
 }
 
 .card-img-top {
     width: 100%;
-    height: 200px;       /* uniform height */
-    object-fit: cover;   /* fills area without stretching */
+    height: 200px;    
+    object-fit: cover;  
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
 }

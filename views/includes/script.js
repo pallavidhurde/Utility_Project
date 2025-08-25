@@ -1,6 +1,4 @@
-// frontend/script.js
 
-// Fetch services from backend
 async function fetchServices() {
     const response = await fetch("http://localhost:5000/api/services");
     const services = await response.json();
@@ -13,11 +11,9 @@ async function fetchServices() {
     });
 }
 
-// Search services
 function searchServices() {
     const query = document.getElementById("search").value.toLowerCase();
-    fetchServices(); // This should be modified to filter based on query
+    fetchServices(); 
 }
 
-// Load services on page load
 document.addEventListener("DOMContentLoaded", fetchServices);

@@ -16,11 +16,7 @@ const session = require("express-session");
 const ExpressError = require("./utils/ExpressError.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const Review=require("./models/review.js");
-const { selectFields } = require("express-validator/lib/field-selection.js");
- 
 
-
- 
 const MONGO_URL = "mongodb://127.0.0.1:27017/utility";
 
 main().then(()=>{
